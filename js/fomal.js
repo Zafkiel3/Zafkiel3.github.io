@@ -1119,7 +1119,7 @@ function createtime1() {
   var dnum = Math.floor(days);
 
   var ascll = [
-    `欢迎来到pRism🥝の小家!`,
+    `欢迎来到pRismの小家!`,
     `Future is now 🍭🍭🍭`,
     `
         
@@ -1172,7 +1172,7 @@ function createtime2() {
   setTimeout(
     console.warn.bind(
       console,
-      "%c ⚡ Powered by Fomalhaut🥝 %c 你正在访问pRism🥝の小家",
+      "%c ⚡ Powered by Fomalhaut🥝 %c 你正在访问pRismの小家",
       "color:white; background-color:#f0ad4e",
       ""
     )
@@ -1282,8 +1282,8 @@ function share_() {
   try {
     // 截取标题
     var title = document.title;
-    var subTitle = title.endsWith("| pRism🥝") ? title.substring(0, title.length - 14) : title;
-    navigator.clipboard.writeText('pRism🥝的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n欢迎来访！🍭🍭🍭');
+    var subTitle = title.endsWith("| pRism") ? title.substring(0, title.length - 14) : title;
+    navigator.clipboard.writeText('pRism的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n欢迎来访！🍭🍭🍭');
     new Vue({
       data: function () {
         this.$notify({
