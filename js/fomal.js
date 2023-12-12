@@ -3176,7 +3176,7 @@ if (localStorage.getItem("blogbg") != undefined) {
     --default-bg: url(https://img.xjh.me/random_img.php?return=302&type=bg&ctype=acg);
     --darkmode-bg:url(https://tuchuang.voooe.cn/images/2023/12/11/91745378_p0_master1200.jpg);
     --mobileday-bg: url(https://t.mwm.moe/mp);
-    --mobilenight-bg: url(https://tuchuang.voooe.cn/images/2023/12/11/91745378_p0_master1200.jpg);
+    --mobilenight-bg: url(https://t.mwm.moe/mp);
   }`;
 }
 // 切换背景主函数

@@ -47,6 +47,15 @@
   </url>
   
   <url>
+    <loc>https://www.pri87.vip/box/nav/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.pri87.vip/box/animation/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
@@ -74,34 +83,7 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/box/nav/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pri87.vip/life/movies/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pri87.vip/personal/about/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pri87.vip/personal/love/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -137,6 +119,15 @@
   </url>
   
   <url>
+    <loc>https://www.pri87.vip/personal/about/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.pri87.vip/site/time/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
@@ -156,6 +147,15 @@
   
   <url>
     <loc>https://www.pri87.vip/social/link/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/personal/love/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -205,13 +205,6 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/tags/PE/</loc>
-    <lastmod>2023-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pri87.vip/tags/%E5%8E%8B%E7%BC%A9%E5%99%A8/</loc>
     <lastmod>2023-12-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -220,6 +213,13 @@
   
   <url>
     <loc>https://www.pri87.vip/tags/%E5%A3%B3/</loc>
+    <lastmod>2023-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/tags/PE/</loc>
     <lastmod>2023-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
