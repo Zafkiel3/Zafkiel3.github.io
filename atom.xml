@@ -6,7 +6,7 @@
   <link href="https://www.pri87.vip/atom.xml" rel="self"/>
   
   <link href="https://www.pri87.vip/"/>
-  <updated>2023-12-12T06:27:11.287Z</updated>
+  <updated>2023-12-12T06:28:45.400Z</updated>
   <id>https://www.pri87.vip/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.pri87.vip/posts/264d914b.html"/>
     <id>https://www.pri87.vip/posts/264d914b.html</id>
     <published>2023-12-12T06:23:11.000Z</published>
-    <updated>2023-12-12T06:27:11.287Z</updated>
+    <updated>2023-12-12T06:28:45.400Z</updated>
     
     <content type="html"><![CDATA[<h1>运行时压缩器</h1><p>定义：针对于PE文件而言，可执行文件内部含有解压缩代码，文件在运行瞬间于内存中解压后执行。</p><p>运行时压缩文件也是PE文件，含有原PE文件和解码程序。在程序的EP代码中执行解码程序，在程序入口（EP）处执行解码程序，同时在内存中解压缩后执行。</p><h2 id="分类">分类</h2><p>分为压缩器和保护器。</p><h3 id="压缩器">压缩器</h3><p>目的：</p><p>减小PE文件大小，便于传输和保存</p><p>隐藏PE文件内部代码和资源</p><h3 id="保护器">保护器</h3><p>目的：</p><p>保护PE文件免受代码逆向分析，应用多种防止代码逆向的技术（反调试，反模拟，代码混淆，多态代码，垃圾代码，调试器监视等）。压缩后比源文件大</p><p>防破解，保护代码与资源</p><h2 id="UPX">UPX</h2><ul><li><p>一种压缩器，比较主流</p></li><li><p>对PE文件执行压缩后有以下特点：</p></li><li><ul><li>PE头和原来相同</li><li>节区名称改变(.text变为UPX0,.data变为UPX1)</li><li>第一个节区的RawDataSize=0(空节区)</li><li>EP在第二个节区</li><li>资源节区大小<code>几乎</code>无变化</li><li>入口点改变</li></ul></li><li><blockquote><p>为什么第一个节区是空节区</p><p>节区头中,第一个节区(UPX0)的RawDataSize为0,但是VirtualSize为10000.代码和数据都在UPX1中.UPX解压后,PE文件运行瞬间将解压的代码解压到第一个节区,解压结束后,运行源文件的EP代码.</p></blockquote></li><li><blockquote><p>入口点的变化</p><p>修改后，程序入口点EP到了UPX1的末端，而真实入口点OEP在EP之前。压缩后EP处指令为PUSHAD(和PUSHA相同)，是将EAX~EDI的值保存到栈，然后为MOV ESI,x，x是UPX0的起始地址</p></blockquote></li><li><p>开始执行时:</p></li><li><ol><li>PUSHAD(和PUSHA相同)，将EAX~EDI的值压入栈</li><li>mov esi,x(或offset x),将x(一个地址,如果是offset则是x的地址)装入esi寄存器中,这是把UPX1的起始地址放到ESI中</li><li>LEA EDI,DWORD PTR DS:[ESI+y]或lea edi, [esi-y]这个的作用是把UPX0的起始地址放到EDI中</li><li>PUSH EDI是把首地址入栈</li><li>解密循环:(从EDX中读取一个字节写入EDI??存疑)具体的解密算法按照加密来选择</li><li>解压缩循环:从ESI所指的UPX1中依次读值,经过LZMA解压缩填充到之前为NULL的EDI所指的UPX0中</li><li>重定位循环:把所有<code>基于地址的位置无关代码</code>(PIC)重定位,PIC是只使用相对位置的指令.如(CALL,JMP等),PIC在.data开头创建了全局偏移表(GOT)</li></ol></li><li><p>然后会进行IAT的建立。最后再开始执行源代码。</p></li></ul>]]></content>
     
