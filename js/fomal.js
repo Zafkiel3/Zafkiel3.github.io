@@ -3336,7 +3336,7 @@ function createWinbox() {
   window.addEventListener("resize", winResize);
 
   // 每一类我放了一个演示，直接往下复制粘贴 a标签 就可以，需要注意的是 函数里面的链接 冒号前面需要添加反斜杠\进行转义
-  winbox.body.innerHTML = `
+  winbox.body.innerHTML = 
 <div class="settings" style="display: block;">
 <div id="article-container" style="padding:12px;">
 <br>
@@ -3475,7 +3475,7 @@ function createWinbox() {
 
 </div>
 
-`;
+;
 
   // 打开小窗时候初始化
   $("#" + localStorage.getItem("themeColor")).attr("checked", true);
