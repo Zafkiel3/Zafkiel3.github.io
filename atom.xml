@@ -6,7 +6,7 @@
   <link href="https://www.pri87.vip/atom.xml" rel="self"/>
   
   <link href="https://www.pri87.vip/"/>
-  <updated>2023-12-13T01:49:04.197Z</updated>
+  <updated>2023-12-13T03:20:09.814Z</updated>
   <id>https://www.pri87.vip/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>《逆核》04-基址重定位表</title>
+    <link href="https://www.pri87.vip/posts/8430b536.html"/>
+    <id>https://www.pri87.vip/posts/8430b536.html</id>
+    <published>2023-12-13T03:17:19.000Z</published>
+    <updated>2023-12-13T03:20:09.814Z</updated>
+    
+    <content type="html"><![CDATA[<h1>基址重定位表</h1><h2 id="定义">定义</h2><p>PE重定位指如果PE文件加载时(一般是DLL,SYS动态加载)已经有别的DLL或SYS文件加载到它的ImageBase处，PE装载器会将其加载到其它未被占用的空间。<strong>PE装载器把它装载到其它位置的一系列行为</strong>就叫做PE重定位。(如果不进行这个操作,程序无法运行,内存地址引用错误)</p><blockquote><p>要解决什么问题呢?<br>–即让DLL文件能加载到其它地方并可以被正确调用.</p></blockquote><p>对于exe文件来说,exe每次都会加载到随机地址(ASLR机制)</p><h2 id="操作原理">操作原理</h2><ul><li>在程序中查找硬编码的地址位置(如指令指向的绝对地址)</li><li>读取值后,减去imagebase(VA-&gt;RVA)</li><li>加上实际加载的地址(RVA-&gt;VA)</li><li>注:这个是在加载时直接写入修改,而不是每次调用函数或指令时再计算</li></ul><p>那么,该如何查找硬编码地址呢?</p><h2 id="基址重定位表">基址重定位表</h2><p>基址重定位表记录了程序加载时需要修正的值的相关信息,包括修正地址的位置,需要修正的字节数,需要修正的地址类型等.在.reloc节中.位于PE头的DataDirectory数组的索引为5的元素指向了这个表.该表中每个记录都被称为<strong>一项</strong>(entry),每个项包含了需要修正的地址的详细信息.项以可变长度数组的形式存在<strong>重定位块</strong>中,每个重定位块是如下的IMAGE_BASE_RELOCATION结构体</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_BASE_RELOCATION</span> &#123;</span></span><br><span class="line">    DWORD VirtualAddress; <span class="comment">// 需要重定位的数据的RVA</span></span><br><span class="line">    DWORD SizeOfBlock;    <span class="comment">// 重定位块的长度(包括TypeOffset)</span></span><br><span class="line">    <span class="comment">//WORD TypeOffset[1];   // 重定位的偏移</span></span><br><span class="line">&#125; IMAGE_BASE_RELOCATION;</span><br></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    WORD Offset:<span class="number">12</span>;  <span class="comment">// 大小为12Bit的重定位偏移 </span></span><br><span class="line">    WORD Type  :<span class="number">4</span>;   <span class="comment">// 大小为4Bit的重定位信息类型值 </span></span><br><span class="line">&#125;TypeOffset;         <span class="comment">// 这个结构体是A1Pass总结的</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>每个IMAGE_BASE_RELOCATION结构体都表示一个重定位块,每块记录了0x1000页,记录方法是VirtualAddress表明基地址,每个TypeOffset的低12位表示偏移,基地址加偏移即是那个需要修改的地址.</p><p>其中SizeOfBlock的大小(块的长度)指明该重定位块中重定位项的个数</p><p>TypeOffset原则上不属于结构中,且元素个数 = （SizeOfBlock - 8 ）/ 2,其中前4位的部分含义:</p><blockquote><ul><li>[<code>IMAGE_REL_BASED_ABSOLUTE (0)</code>：使块按照32位对齐，位置为0]</li><li>[<code>IMAGE_REL_BASED_HIGH (1)</code>：高16位必须应用于偏移量所指高字16位]</li><li>[<code>IMAGE_REL_BASED_LOW (2)</code>：低16位必须应用于偏移量所指低字16位]</li><li>[<code>IMAGE_REL_BASED_HIGHLOW (3)</code>：全部32位应用于所有32位]</li><li>[<code>IMAGE_REL_BASED_HIGHADJ (4)</code>：需要32位，高16位位于偏移量，低16位位于下一个偏移量数组元素，组合为一个带符号数，加上32位的一个数，然后加上8000然后把高16位保存在偏移量的16位域内]。</li></ul></blockquote><p>数组的最后一项以NULL填充结尾.</p>]]></content>
+    
+    
+    <summary type="html">本篇介绍基址重定位和基址重定位表</summary>
+    
+    
+    
+    <category term="逆向工程核心原理" scheme="https://www.pri87.vip/categories/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/"/>
+    
+    
+    <category term="逆向" scheme="https://www.pri87.vip/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="学习" scheme="https://www.pri87.vip/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>《逆核》03-手脱UPX</title>
     <link href="https://www.pri87.vip/posts/d011918c.html"/>
     <id>https://www.pri87.vip/posts/d011918c.html</id>
     <published>2023-12-13T01:40:10.000Z</published>
-    <updated>2023-12-13T01:49:04.197Z</updated>
+    <updated>2023-12-13T01:49:19.084Z</updated>
     
     <content type="html"><![CDATA[<blockquote><h2 id="UPX解码步骤">UPX解码步骤</h2><blockquote><p>1.先初始化<br>2.进行代码还原<br>3.进行CALL修复<br>4.进行函数表还原<br>5.节表初始化<br>6.解码完毕飞向程序入口</p></blockquote></blockquote><h2 id="方法">方法</h2><ul><li>单步跟踪法</li><li>ESP定律法</li></ul><h2 id="解释">解释</h2><p>单步跟踪法：基于UPX解压缩的步骤，ep开头会先push所有寄存器到栈，然后执行三个循环（见前一节），然后pop弹出所有寄存器后，重建表，进入程序oep。因此，只要一直f8，遇到循环就f4跳过，直到看到pop，然后跳过小循环，进入最后一个就，jmp即可进入oep，基于以上原理，由于upx解压部分和跳转都是连在一起的，所以直接alt+t搜索pop指令找到最后的位置(push对应pop,pusha或pushad对应popa和popad)</p><p>ESP定律法：根据原理push之后是解压，解压完为了跳回oep要获得之前的寄存器值即栈一定会平衡，开始时的栈和最后进入oep的栈状态相同，因此开始调试后先f8，使ESP(RSP)下浮一个值创建栈,如果之后的指令需要这时栈底的寄存器值,一定会回到这里读取这个值.然后复制这时栈顶的地址,G跳到那个地址,在这里下硬件断点,点f9后运行到硬件断点就是pop的位置之后的指令,然后如上即可.</p><h2 id="实例">实例</h2><h3 id="实例一-使用IDA">实例一(使用IDA)</h3><p>1,脱一个x64程序的UPX壳,使用ida:</p><p>初始对比:</p><img src="https://s2.loli.net/2023/12/13/rxZo9yn2kcEePSq.png" alt="image-20231118200216393" /><p>可以看出加壳之后比源程序小了约四分之三.用ida打开加壳程序:</p><img src="https://s2.loli.net/2023/12/13/XcMx5TEzsZaekKR.png" alt="image-20231118200430923" style="zoom:33%;" /><img src="https://s2.loli.net/2023/12/13/JVCxMTav3Pb5oqN.png" alt="image-20231118200459860" style="zoom:33%;" /><p>可以看出,压缩后函数变得极少,可以作为判断是否有壳的方法.</p><p>在开始处点f2下断点并进行动态调试:</p><img src="https://s2.loli.net/2023/12/13/oKPZxGBQt1AvWXO.png" alt="image-20231118200843939" style="zoom:33%;" /><img src="https://s2.loli.net/2023/12/13/h4OsAL3VNDYijWb.png" alt="image-20231118201113580" style="zoom:80%;" /><p>f8单步调试并观察栈:</p><img src="./../../../../工作区/文档/笔记/逆向工程核心原理/03-手脱UPX/image-20231118201313306.png" alt="image-20231118201313306" style="zoom:80%;" /><p>复制栈对应地址并g跳转然后下硬件断点:</p><img src="https://s2.loli.net/2023/12/13/fMiQDm8aeAJPIXC.png" alt="image-20231118201558215" style="zoom:80%;" /><img src="https://s2.loli.net/2023/12/13/je9cyJPmXhFVCzp.png" alt="image-20231118201616782" style="zoom:80%;" /><p>观察到栈已经下了断点,这时直接f9,弹出</p><img src="https://s2.loli.net/2023/12/13/gswat71T26xAXKQ.png" alt="image-20231118201807100" style="zoom:50%;" /><p>跳转到</p><img src="https://s2.loli.net/2023/12/13/yS8JnoQ5D647LGu.png" alt="image-20231118201908412" style="zoom:80%;" /><p>转换汇编视图可以发现</p><img src="https://s2.loli.net/2023/12/13/Q9LUcBgMjTPoqa5.png" alt="image-20231118202102479" style="zoom:80%;" /><p>指针点击循环下面的位置点f4运行到对应位置,再几次f8进大跳转就进入oep了,这个地方注意要先把硬件断点删了,点击上面工具栏的断点列表del键删掉</p><h3 id="实例2-使用OD">实例2(使用OD)</h3><p>这是一个x32程序,使用od</p><p>进入后发现:</p><img src="https://s2.loli.net/2023/12/13/Q6BGY5ECRXzkfZV.png" alt="image-20231118202752449" style="zoom:80%;" /><p>和上面方法一样,先f8,然后对寄存器下断点(右键sep值复制,在下面的命令窗口输入hr (对应的地址))这表示是硬件读取断点.回车</p><img src="https://s2.loli.net/2023/12/13/6UYmy4JF8NeqdDz.png" alt="image-20231118203539489" style="zoom:80%;" /><p>然后直接f9,删掉硬件断点:调试-硬件断点-删除.就找到了pop,小循环,大跳转</p><img src="https://s2.loli.net/2023/12/13/ncliZFbTf6NDGtW.png" alt="image-20231118204013322" style="zoom:80%;" /><p>之后与第一个写的相同</p><p>或者在开始的时候,ctrl+f搜索popad</p><img src="https://s2.loli.net/2023/12/13/umPHGU7vtcY5wEO.png" alt="image-20231118204127891" style="zoom:80%;" /><p>然后找到对应位置:</p><img src="https://s2.loli.net/2023/12/13/XEZIDWQcYvMSk83.png" alt="image-20231118204242582" style="zoom:80%;" /><p>然后直接f4即可</p>]]></content>
     
@@ -44,7 +67,7 @@
     <link href="https://www.pri87.vip/posts/264d914b.html"/>
     <id>https://www.pri87.vip/posts/264d914b.html</id>
     <published>2023-12-12T06:23:11.000Z</published>
-    <updated>2023-12-12T08:34:05.357Z</updated>
+    <updated>2023-12-13T03:32:13.261Z</updated>
     
     <content type="html"><![CDATA[<h1>运行时压缩器</h1><p>定义：针对于PE文件而言，可执行文件内部含有解压缩代码，文件在运行瞬间于内存中解压后执行。</p><p>运行时压缩文件也是PE文件，含有原PE文件和解码程序。在程序的EP代码中执行解码程序，在程序入口（EP）处执行解码程序，同时在内存中解压缩后执行。</p><h2 id="1分类">1分类</h2><p>分为压缩器和保护器。</p><h3 id="1-1压缩器">1.1压缩器</h3><p>目的：</p><p>减小PE文件大小，便于传输和保存</p><p>隐藏PE文件内部代码和资源</p><h3 id="1-2保护器">1.2保护器</h3><p>目的：</p><p>保护PE文件免受代码逆向分析，应用多种防止代码逆向的技术（反调试，反模拟，代码混淆，多态代码，垃圾代码，调试器监视等）。压缩后比源文件大</p><p>防破解，保护代码与资源</p><h2 id="2UPX">2UPX</h2><p>一种压缩器，比较主流</p><h3 id="2-1压缩后特点">2.1压缩后特点</h3><ul><li>PE头和原来相同</li><li>节区名称改变(.text变为UPX0,.data变为UPX1)</li><li>第一个节区的RawDataSize=0(空节区)</li><li>EP在第二个节区</li><li>资源节区大小<code>几乎</code>无变化</li><li>入口点改变</li></ul><h3 id="2-2补充">2.2补充</h3><blockquote><p>为什么第一个节区是空节区</p><p>节区头中,第一个节区(UPX0)的RawDataSize为0,但是VirtualSize为10000.代码和数据都在UPX1中.UPX解压后,PE文件运行瞬间将解压的代码解压到第一个节区,解压结束后,运行源文件的EP代码.</p></blockquote><blockquote><p>入口点的变化</p><p>修改后，程序入口点EP到了UPX1的末端，而真实入口点OEP在EP之前。压缩后EP处指令为PUSHAD(和PUSHA相同)，是将EAX~EDI的值保存到栈，然后为MOV ESI,x，x是UPX0的起始地址</p></blockquote><h3 id="2-3UPX额外执行的操作">2.3UPX额外执行的操作</h3><ol><li>PUSHAD(和PUSHA相同)，将EAX~EDI的值压入栈</li><li>mov esi,x(或offset x),将x(一个地址,如果是offset则是x的地址)装入esi寄存器中,这是把UPX1的  起始地址放到ESI中</li><li>LEA EDI,DWORD PTR DS:[ESI+y]或lea edi, [esi-y]这个的作用是把UPX0的起始地址放到EDI中</li><li>PUSH EDI是把首地址入栈</li><li>解密循环:(从EDX中读取一个字节写入EDI??存疑)具体的解密算法按照加密来选择</li><li>解压缩循环:从ESI所指的UPX1中依次读值,经过LZMA解压缩填充到之前为NULL的EDI所指的UPX0中</li><li>重定位循环:把所有<code>基于地址的位置无关代码</code>(PIC)重定位,PIC是只使用相对位置的指令.如(CALL,JMP等),PIC在.data开头创建了全局偏移表(GOT)</li></ol><p>然后会进行IAT的建立。最后再开始执行源代码。</p>]]></content>
     

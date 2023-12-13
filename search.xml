@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>《逆核》04-基址重定位表</title>
+      <link href="/posts/8430b536.html"/>
+      <url>/posts/8430b536.html</url>
+      
+        <content type="html"><![CDATA[<h1>基址重定位表</h1><h2 id="定义">定义</h2><p>PE重定位指如果PE文件加载时(一般是DLL,SYS动态加载)已经有别的DLL或SYS文件加载到它的ImageBase处，PE装载器会将其加载到其它未被占用的空间。<strong>PE装载器把它装载到其它位置的一系列行为</strong>就叫做PE重定位。(如果不进行这个操作,程序无法运行,内存地址引用错误)</p><blockquote><p>要解决什么问题呢?<br>–即让DLL文件能加载到其它地方并可以被正确调用.</p></blockquote><p>对于exe文件来说,exe每次都会加载到随机地址(ASLR机制)</p><h2 id="操作原理">操作原理</h2><ul><li>在程序中查找硬编码的地址位置(如指令指向的绝对地址)</li><li>读取值后,减去imagebase(VA-&gt;RVA)</li><li>加上实际加载的地址(RVA-&gt;VA)</li><li>注:这个是在加载时直接写入修改,而不是每次调用函数或指令时再计算</li></ul><p>那么,该如何查找硬编码地址呢?</p><h2 id="基址重定位表">基址重定位表</h2><p>基址重定位表记录了程序加载时需要修正的值的相关信息,包括修正地址的位置,需要修正的字节数,需要修正的地址类型等.在.reloc节中.位于PE头的DataDirectory数组的索引为5的元素指向了这个表.该表中每个记录都被称为<strong>一项</strong>(entry),每个项包含了需要修正的地址的详细信息.项以可变长度数组的形式存在<strong>重定位块</strong>中,每个重定位块是如下的IMAGE_BASE_RELOCATION结构体</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_BASE_RELOCATION</span> &#123;</span></span><br><span class="line">    DWORD VirtualAddress; <span class="comment">// 需要重定位的数据的RVA</span></span><br><span class="line">    DWORD SizeOfBlock;    <span class="comment">// 重定位块的长度(包括TypeOffset)</span></span><br><span class="line">    <span class="comment">//WORD TypeOffset[1];   // 重定位的偏移</span></span><br><span class="line">&#125; IMAGE_BASE_RELOCATION;</span><br></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    WORD Offset:<span class="number">12</span>;  <span class="comment">// 大小为12Bit的重定位偏移 </span></span><br><span class="line">    WORD Type  :<span class="number">4</span>;   <span class="comment">// 大小为4Bit的重定位信息类型值 </span></span><br><span class="line">&#125;TypeOffset;         <span class="comment">// 这个结构体是A1Pass总结的</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>每个IMAGE_BASE_RELOCATION结构体都表示一个重定位块,每块记录了0x1000页,记录方法是VirtualAddress表明基地址,每个TypeOffset的低12位表示偏移,基地址加偏移即是那个需要修改的地址.</p><p>其中SizeOfBlock的大小(块的长度)指明该重定位块中重定位项的个数</p><p>TypeOffset原则上不属于结构中,且元素个数 = （SizeOfBlock - 8 ）/ 2,其中前4位的部分含义:</p><blockquote><ul><li>[<code>IMAGE_REL_BASED_ABSOLUTE (0)</code>：使块按照32位对齐，位置为0]</li><li>[<code>IMAGE_REL_BASED_HIGH (1)</code>：高16位必须应用于偏移量所指高字16位]</li><li>[<code>IMAGE_REL_BASED_LOW (2)</code>：低16位必须应用于偏移量所指低字16位]</li><li>[<code>IMAGE_REL_BASED_HIGHLOW (3)</code>：全部32位应用于所有32位]</li><li>[<code>IMAGE_REL_BASED_HIGHADJ (4)</code>：需要32位，高16位位于偏移量，低16位位于下一个偏移量数组元素，组合为一个带符号数，加上32位的一个数，然后加上8000然后把高16位保存在偏移量的16位域内]。</li></ul></blockquote><p>数组的最后一项以NULL填充结尾.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 逆向工程核心原理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 逆向 </tag>
+            
+            <tag> 学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《逆核》03-手脱UPX</title>
       <link href="/posts/d011918c.html"/>
       <url>/posts/d011918c.html</url>
