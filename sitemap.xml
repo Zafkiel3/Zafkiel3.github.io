@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/box/nav/index.html</loc>
+    <loc>https://www.pri87.vip/tags/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/tags/index.html</loc>
+    <loc>https://www.pri87.vip/life/games/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -110,7 +110,16 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/social/link/index.html</loc>
+    <loc>https://www.pri87.vip/box/nav/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/personal/bb/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -128,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/social/fcircle/index.html</loc>
+    <loc>https://www.pri87.vip/social/link/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -137,7 +146,7 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/life/games/index.html</loc>
+    <loc>https://www.pri87.vip/personal/love/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -147,6 +156,24 @@
   
   <url>
     <loc>https://www.pri87.vip/life/movies/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/personal/about/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/social/fcircle/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -165,33 +192,6 @@
   
   <url>
     <loc>https://www.pri87.vip/site/time/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pri87.vip/personal/bb/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pri87.vip/personal/about/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pri87.vip/personal/love/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -299,14 +299,14 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/categories/%E9%A2%98%E9%9B%86/</loc>
+    <loc>https://www.pri87.vip/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>https://www.pri87.vip/categories/%E9%A2%98%E9%9B%86/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
