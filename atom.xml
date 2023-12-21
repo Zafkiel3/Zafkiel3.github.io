@@ -6,7 +6,7 @@
   <link href="https://www.pri87.vip/atom.xml" rel="self"/>
   
   <link href="https://www.pri87.vip/"/>
-  <updated>2023-12-20T17:59:25.026Z</updated>
+  <updated>2023-12-21T14:36:30.751Z</updated>
   <id>https://www.pri87.vip/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ollvm代码混淆</title>
+    <link href="https://www.pri87.vip/posts/f1101757.html"/>
+    <id>https://www.pri87.vip/posts/f1101757.html</id>
+    <published>2023-12-21T11:39:55.000Z</published>
+    <updated>2023-12-21T14:36:30.751Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><code>将高级语言编写的程序转换位目标语言(通常是机器语言)的程序叫做编译器.</code>这个转换的过程叫编译.不同于在执行解释性语言解释器总存在且逐行解释,编译器一次性把整个程序编译成二进制代码从而一般情况运行更快.但是由于解释器可以在不同平台上运作,兼容性,跨平台性更强.</p><h2 id="编译器构成"><a href="#编译器构成" class="headerlink" title="编译器构成"></a>编译器构成</h2><p>传统的编译器构成常分为三个部分:前端,优化器,后端.编译过程中,前端负责语法分析,将源代码转为其高级形式:抽象语法树(即把源代码的字符串转为内存中有意义的数据);优化器将经过前端处理的中间代码进行优化;后端将优化后的中间代码转换为对应的汇编语言.</p><h2 id="主要编译器"><a href="#主要编译器" class="headerlink" title="主要编译器"></a>主要编译器</h2><h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><blockquote><p>GCC（GNU Compiler Collection，GNU 编译器套装），是一套由 GNU 开发的编程语言编译器。GCC 原名为 GNU C 语言编译器，因为它原本只能处理 C语言。GCC 快速演进，变得可处理 C++、Fortran、Pascal、Objective-C、Java 以及 Ada 等他语言。</p></blockquote><h3 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h3><blockquote><p>LLVM （Low Level Virtual Machine，底层虚拟机)）提供了与编译器相关的支持，能够进行程序语言的编译期优化、链接优化、在线编译优化、代码生成。简而言之，可以作为多种编译器的后台来使用。</p><p>苹果公司一直使用 GCC 作为官方的编译器。GCC 作为一款开源的编译器，一直做得不错，但 Apple 对编译工具会提出更高的要求。原因主要有以下两点：</p><p>其一，是 Apple 对 Objective-C 语言（包括后来对 C 语言）新增很多特性，但 GCC 开发者并不买 Apple 的账——不给实现，因此索性后来两者分成两条分支分别开发，这也造成 Apple 的编译器版本远落后于 GCC 的官方版本。</p><p>其二，GCC 的代码耦合度太高，很难独立，而且越是后期的版本，代码质量越差，但 Apple 想做的很多功能（比如更好的 IDE 支持），需要模块化的方式来调用 GCC，但 GCC一直不给做。</p></blockquote><p>该编译器的特殊点在于中间表示(IR).这是前端将源代码生成为一种类机器码(各平台不同),并可以由LLVM后端解析的代码.用以扩展解释器的跨平台性.此前,一般是把源代码编译成C代码然后交由对应平台的C编译器编译成二进制文件(因为一般平台都有C编译器).在LLVM中,只需要把源文件编译成IR然后交由LLVM后端直接编译到对应平台.</p><h3 id="CLANG"><a href="#CLANG" class="headerlink" title="CLANG"></a>CLANG</h3><p>Clang 是 LLVM 的前端,于LLVM的后端组合可以当作另一个编译器,Clang是Apple研发的前端旨在代替GCC的前端</p><hr><h1 id="OLLVM"><a href="#OLLVM" class="headerlink" title="OLLVM"></a>OLLVM</h1><p>在LLVM基础上,Obfuscator-LLVM项目被研发了出来,通过三种混淆Pass(模块)完善代码的安全性.</p><ul><li>控制流平坦化</li><li>指令替换</li><li>伪造控制流(又叫混淆控制流)</li></ul><p>混淆Pass作用于IR,通过混淆IR使后端转换的文件被混淆,使逆向难度增大.</p><h2 id="控制流平坦化"><a href="#控制流平坦化" class="headerlink" title="控制流平坦化"></a>控制流平坦化</h2><p><img src="https://s2.loli.net/2023/12/21/RahxKGqA8B5OnCr.png" alt="104308x4cppkp5zjsfl8zy"></p><p>代码本身是真实块和retn块的组合,在进行控制流平坦化之后,程序的流程被分发器控制,所有真实块最后进行对标记的处理然后全部进入预处理器,根据标记的值不同由主分发器分发到副分发器再到真实块,从而混淆了整个执行流程,在反汇编视图中的特征是有很多while循环在后面有switch case语句.(以我的水平来看,控制流平坦化之后几乎不可读)</p><h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><p>原始的条件一般会转化为CMOV条件传送指令,根据比较结果设置标记的值</p><h2 id="指令替换"><a href="#指令替换" class="headerlink" title="指令替换"></a>指令替换</h2><p>用多个表达式替换一个计算表达式</p><h3 id="特征-1"><a href="#特征-1" class="headerlink" title="特征"></a>特征</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">原式子：</span><br><span class="line">a=b+c</span><br><span class="line">混淆后：</span><br><span class="line">a = b - (-c)</span><br><span class="line">a = -(-b + (-c))</span><br><span class="line">r = rand (); a = b + r; a = a + c; a = a - r</span><br><span class="line">r = rand (); a = b - r; a = a + b; a = a + r</span><br><span class="line"></span><br><span class="line">原式子：</span><br><span class="line">a = b-c</span><br><span class="line">混淆后：</span><br><span class="line">a = b + (-c)</span><br><span class="line">r = rand (); a = b + r; a = a - c; a = a - r</span><br><span class="line">r = rand (); a = b - r; a = a - c; a = a + r</span><br><span class="line"></span><br><span class="line">原指令：</span><br><span class="line">a = b &amp; c</span><br><span class="line">混淆后：</span><br><span class="line">a = (b ^ ~c) &amp; b</span><br><span class="line">a = ~(~a | ~b) &amp; (r | ~r)</span><br><span class="line"></span><br><span class="line">原指令：</span><br><span class="line">a = b | c</span><br><span class="line">混淆后：</span><br><span class="line">a = (b &amp; c) | (b ^ c)</span><br><span class="line">a = (((~a &amp; r) | (a &amp; ~r)) ^ ((~b &amp; r) | (b &amp; ~r))) | (~(~a | ~b) &amp; (r | ~r))</span><br><span class="line"></span><br><span class="line">原指令：</span><br><span class="line">a = a ^ b</span><br><span class="line">混淆后：</span><br><span class="line">a = (~a &amp; b) | (a &amp; ~b)</span><br><span class="line">a = ((~a &amp; r) | (a &amp; ~r)) ^ ((~b &amp; r) | (b &amp; ~r))</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>或者</p><img src="https://ask.qcloudimg.com/http-save/yehe-8150619/9571bfa62d17b52593dff42fa4bd9a47.png" alt="[IDA F5 增强插件，还我源代码（一）-腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1845335)" /><h2 id="伪造控制流"><a href="#伪造控制流" class="headerlink" title="伪造控制流"></a>伪造控制流</h2><p>伪造控制流是在一开始设置一个变量&#x2F;表达式,这个变量&#x2F;表达式被称为<code>不透明谓词</code>,并为每一个基本块生成一个垃圾指令块,通过不透明谓词进行跳转到不同位置,但是实际上不会到达垃圾指令块处.</p><h3 id="特征图"><a href="#特征图" class="headerlink" title="特征图"></a>特征图</h3><img src="http://image.3001.net/images/20170323/14902545615701.png!small" alt="6.png" style="zoom:67%;" /><hr><h2 id="对于初学者的逆向方法"><a href="#对于初学者的逆向方法" class="headerlink" title="对于初学者的逆向方法"></a>对于初学者的逆向方法</h2><p>伪造控制流:见<a href="https://zhuanlan.zhihu.com/p/151853593">Hex-Rays: 十步杀一人，两步秒OLLVM-BCF(zhihu.com)</a></p><p>控制流平坦化和伪造控制流:见<a href="https://github.com/pcy190/deflat">pcy190&#x2F;deflat: Use angr to deflat the flat control flow. (github.com)</a></p><p>指令替换:见<a href="https://github.com/joydo/d810">joydo&#x2F;d810 (github.com)</a></p>]]></content>
+    
+    
+    <summary type="html">本篇对ollvm进行简单介绍并对应反混淆方法</summary>
+    
+    
+    
+    <category term="知识集" scheme="https://www.pri87.vip/categories/%E7%9F%A5%E8%AF%86%E9%9B%86/"/>
+    
+    
+    <category term="逆向" scheme="https://www.pri87.vip/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="编译器" scheme="https://www.pri87.vip/tags/%E7%BC%96%E8%AF%91%E5%99%A8/"/>
+    
+    <category term="混淆" scheme="https://www.pri87.vip/tags/%E6%B7%B7%E6%B7%86/"/>
+    
+    <category term="反混淆" scheme="https://www.pri87.vip/tags/%E5%8F%8D%E6%B7%B7%E6%B7%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>目送</title>
     <link href="https://www.pri87.vip/posts/b6ee327c.html"/>
     <id>https://www.pri87.vip/posts/b6ee327c.html</id>
     <published>2023-12-20T14:05:46.000Z</published>
-    <updated>2023-12-20T17:59:25.026Z</updated>
+    <updated>2023-12-20T17:59:48.713Z</updated>
     
     <content type="html"><![CDATA[<p>–曾经，我仰望星空，然后知晓了光明的美好</p><p>​从下仰望着，不解确是存在的，从上俯瞰着，飘忽确是合理的。梦幻般的，也许并不是像镜中的爱丽丝，不是火柴中的美味，恰似我们的生活。超脱吧，远离吧，我所目送的，即是过往的，消融之后的，片甲不留的。也许唯一能看见的，是划开树丛的光，坚韧，有破坏性，把遮蔽“撕拉”一声划破，留下鸣笛，留下明月，留下我的悲怮。</p><p>​连续着昨天和明天的，是名为“今天”的存在，它是超越性的，今天的，而又不只是今天的，看着那道光，我也会想，昨天和明天又有什么不同呢，一边是左边，一边是右边，这里左转还是右转又有什么区别呢？</p><p>​回答我吧，如果有神的话：高歌一曲之后，一定会有掌声吗？莫比乌斯环一定不在一维吗？因果论是伪造的吧。平静，而又安详，富有创造性的格式，时而平稳时而波动，这也是可以知晓的吧。</p><p>​这样，算冷静吗？叽叽喳喳的世界可以劝我放松，却让我失去了痛苦的机会。冷静地在孤独中安详，莫不是是一种目送吧。平衡感从各种方向袭来，散乱的线有组织地组合，便能称为我的表达。析取出的，却是其它的情感吧！</p><p>​说到底，我根本不了解他，因而只能目送。我又有什么资格去道歉，安慰别人呢？还记得之前的时间，他几次来找过我，带过来一箱橘子，我拒绝了。原来飞舞盘旋着的，不仅是明天，还有未可知的过往。跟着偏离星空的星星，往往也会失去方向。盘旋，迂回着的，嘲笑的，观察着，只不过是幻梦，消耗着一页一页的纸张所到达的，也许只是童话的埋骨处。所以，我一直都是看着，目送只是我唯一的选择罢了。</p><p>​从未有人许给我们天堂，更不用妄想依靠信仰。碎裂的梦超越了天空，成为了星星，随时准备喷发，被人们寄托理想。</p><p>​好的，我理解了，这就是过去吧，然而未来确是更残酷的，破灭之后，还留下什么温存呢？能换掉烧完灰的眼睛吗？还是把眼睛洗一洗呢？忘了前面，忘了后面，留在现在的人一定不在现在吧。</p><p>​忧愁或是忧郁，景色总是一成不变的，况且我早已知晓。这样完成了任务也不会有什么改变，只期盼着倒是可行的，这就是仰望吧。跳过不合理，只追求合理，忽视现实，追求着，期盼着，这算是俯瞰吧。而又何时跳入水中，溺死之后又浮上来呢？</p><p>​我算是知道了，只有目送，只能目送，才能把自己刻在星空上，我所渴求的星空，即使回应我了，也只会把我变成悲伤之物吧，然而连牺牲自己，治愈他人的能力都没有，也只是徒劳吧。</p><p>——二零二三年十月二十一日，凌晨一点五十八分作。</p>]]></content>
     
