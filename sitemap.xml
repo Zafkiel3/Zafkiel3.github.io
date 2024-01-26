@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/life/games/index.html</loc>
+    <loc>https://www.pri87.vip/life/movies/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -255,6 +255,15 @@
   
   <url>
     <loc>https://www.pri87.vip/site/census/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/life/games/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -308,15 +317,6 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/life/movies/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pri87.vip/posts/2013454d.html</loc>
     
     <lastmod>2022-10-23</lastmod>
@@ -358,20 +358,6 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/tags/%E5%8E%8B%E7%BC%A9%E5%99%A8/</loc>
-    <lastmod>2024-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pri87.vip/tags/%E5%A3%B3/</loc>
-    <lastmod>2024-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pri87.vip/tags/PE/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -380,6 +366,20 @@
   
   <url>
     <loc>https://www.pri87.vip/tags/%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2024-01-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/tags/%E5%8E%8B%E7%BC%A9%E5%99%A8/</loc>
+    <lastmod>2024-01-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/tags/%E5%A3%B3/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -449,13 +449,6 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/tags/wp/</loc>
-    <lastmod>2024-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pri87.vip/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -477,14 +470,7 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/tags/hook/</loc>
-    <lastmod>2024-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pri87.vip/tags/%E5%90%8C%E4%BD%99/</loc>
+    <loc>https://www.pri87.vip/tags/wp/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -499,6 +485,20 @@
   
   <url>
     <loc>https://www.pri87.vip/tags/z3/</loc>
+    <lastmod>2024-01-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/tags/%E5%90%8C%E4%BD%99/</loc>
+    <lastmod>2024-01-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pri87.vip/tags/hook/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -556,14 +556,14 @@
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/categories/%E9%A2%98%E9%9B%86/</loc>
+    <loc>https://www.pri87.vip/categories/%E7%9F%A5%E8%AF%86%E9%9B%86/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.pri87.vip/categories/%E7%9F%A5%E8%AF%86%E9%9B%86/</loc>
+    <loc>https://www.pri87.vip/categories/%E9%A2%98%E9%9B%86/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
