@@ -242,9 +242,9 @@
     <category term="密码" scheme="https://www.pri87.vip/categories/%E5%AF%86%E7%A0%81/"/>
     
     
-    <category term="块加密" scheme="https://www.pri87.vip/tags/%E5%9D%97%E5%8A%A0%E5%AF%86/"/>
-    
     <category term="对称加密" scheme="https://www.pri87.vip/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/"/>
+    
+    <category term="块加密" scheme="https://www.pri87.vip/tags/%E5%9D%97%E5%8A%A0%E5%AF%86/"/>
     
   </entry>
   
@@ -265,11 +265,11 @@
     <category term="密码学" scheme="https://www.pri87.vip/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
     
-    <category term="对称加密" scheme="https://www.pri87.vip/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/"/>
-    
     <category term="密码" scheme="https://www.pri87.vip/tags/%E5%AF%86%E7%A0%81/"/>
     
     <category term="加密方法" scheme="https://www.pri87.vip/tags/%E5%8A%A0%E5%AF%86%E6%96%B9%E6%B3%95/"/>
+    
+    <category term="对称加密" scheme="https://www.pri87.vip/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/"/>
     
     <category term="流加密" scheme="https://www.pri87.vip/tags/%E6%B5%81%E5%8A%A0%E5%AF%86/"/>
     
