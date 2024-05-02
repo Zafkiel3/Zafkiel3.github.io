@@ -201,11 +201,11 @@
       
         <tags>
             
+            <tag> 对称加密 </tag>
+            
             <tag> 密码 </tag>
             
             <tag> 加密方法 </tag>
-            
-            <tag> 对称加密 </tag>
             
             <tag> 流加密 </tag>
             
@@ -637,9 +637,9 @@
       
         <tags>
             
-            <tag> 对称加密 </tag>
-            
             <tag> 块加密 </tag>
+            
+            <tag> 对称加密 </tag>
             
         </tags>
       
@@ -664,11 +664,11 @@
       
         <tags>
             
+            <tag> 对称加密 </tag>
+            
             <tag> 密码 </tag>
             
             <tag> 加密方法 </tag>
-            
-            <tag> 对称加密 </tag>
             
             <tag> 流加密 </tag>
             
