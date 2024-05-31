@@ -416,6 +416,15 @@
   </url>
   
   <url>
+    <loc>https://www.zafkiel3.com/tags/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.zafkiel3.com/box/animation/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
@@ -434,34 +443,7 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/tags/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/site/census/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/personal/about/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/personal/bb/index.html</loc>
+    <loc>https://www.zafkiel3.com/life/games/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -479,24 +461,6 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/life/games/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/social/fcircle/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.zafkiel3.com/life/movies/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
@@ -506,7 +470,43 @@
   </url>
   
   <url>
+    <loc>https://www.zafkiel3.com/personal/bb/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zafkiel3.com/personal/about/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zafkiel3.com/site/census/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.zafkiel3.com/social/link/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zafkiel3.com/social/fcircle/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -549,14 +549,14 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/tags/%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://www.zafkiel3.com/tags/%E5%AE%9E%E8%B7%B5/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/tags/PE/</loc>
+    <loc>https://www.zafkiel3.com/tags/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -577,7 +577,14 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/tags/%E5%AE%9E%E8%B7%B5/</loc>
+    <loc>https://www.zafkiel3.com/tags/PE/</loc>
+    <lastmod>2024-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zafkiel3.com/tags/%E6%A6%82%E5%BF%B5/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -605,7 +612,14 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/tags/%E6%A6%82%E5%BF%B5/</loc>
+    <loc>https://www.zafkiel3.com/tags/%E5%9D%97%E5%8A%A0%E5%AF%86/</loc>
+    <lastmod>2024-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zafkiel3.com/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -626,28 +640,7 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</loc>
-    <lastmod>2024-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.zafkiel3.com/tags/%E6%B5%81%E5%8A%A0%E5%AF%86/</loc>
-    <lastmod>2024-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/tags/%E5%9D%97%E5%8A%A0%E5%AF%86/</loc>
-    <lastmod>2024-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/tags/wp/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -669,6 +662,13 @@
   
   <url>
     <loc>https://www.zafkiel3.com/tags/%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2024-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zafkiel3.com/tags/wp/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -745,6 +745,13 @@
   </url>
   
   <url>
+    <loc>https://www.zafkiel3.com/tags/kali/</loc>
+    <lastmod>2024-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.zafkiel3.com/tags/%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -759,7 +766,7 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/tags/kali/</loc>
+    <loc>https://www.zafkiel3.com/tags/windows/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -774,13 +781,6 @@
   
   <url>
     <loc>https://www.zafkiel3.com/tags/cry/</loc>
-    <lastmod>2024-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/tags/windows/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -859,14 +859,14 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
+    <loc>https://www.zafkiel3.com/categories/%E5%AF%86%E7%A0%81/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/categories/%E5%AF%86%E7%A0%81/</loc>
+    <loc>https://www.zafkiel3.com/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
