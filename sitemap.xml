@@ -137,25 +137,7 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/box/animation/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/box/gallery/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zafkiel3.com/life/music/index.html</loc>
+    <loc>https://www.zafkiel3.com/life/games/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -173,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://www.zafkiel3.com/life/games/index.html</loc>
+    <loc>https://www.zafkiel3.com/box/animation/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -191,7 +173,25 @@
   </url>
   
   <url>
+    <loc>https://www.zafkiel3.com/box/gallery/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.zafkiel3.com/personal/about/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zafkiel3.com/life/music/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -238,7 +238,7 @@
 
   <url>
     <loc>https://www.zafkiel3.com/</loc>
-    <lastmod>2024-05-31</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -246,14 +246,14 @@
   
   <url>
     <loc>https://www.zafkiel3.com/tags/wp/</loc>
-    <lastmod>2024-05-31</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zafkiel3.com/tags/%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2024-05-31</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
