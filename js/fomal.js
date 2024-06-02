@@ -3174,7 +3174,7 @@ if (localStorage.getItem("blogbg") != undefined) {
 } else {
   document.getElementById("defineBg").innerText = `:root{
     --default-bg: url(https://t.mwm.moe/pc);
-    --darkmode-bg:url(https://tuchuang.voooe.cn/images/2023/12/11/91745378_p0_master1200.jpg);
+    --darkmode-bg:url(https://www.zafkielpic.cc/img/260A95359125E43121E3DA01D3B43B5E.png);
     --mobileday-bg: url(https://t.mwm.moe/mp);
     --mobilenight-bg: url(https://t.mwm.moe/mp);
   }`;
